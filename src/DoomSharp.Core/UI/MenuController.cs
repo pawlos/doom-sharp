@@ -53,6 +53,8 @@ public class MenuController
     private Action<char>? _messageRoutine;
     private bool _messageNeedsInput = false;
 
+    private const char Yes = 'Y';
+    private const char No = 'N';
     private enum MainMenuItemIndexes
     {
         NewGame = 0,
@@ -475,7 +477,7 @@ public class MenuController
         // Take care of any messages that need input
         if (_messageToPrint)
         {
-            if (_messageNeedsInput && ch is not (' ' or 'n' or 'y' or (char)Keys.Escape))
+            if (_messageNeedsInput && ch is not (' ' or No or Yes or (char)Keys.Escape))
             {
                 return false;
             }
@@ -781,7 +783,7 @@ public class MenuController
 
     private void VerifyNightmare(char choice)
     {
-        if (choice != 'y')
+        if (choice != Yes)
         {
             return;
         }
@@ -850,7 +852,7 @@ public class MenuController
 
     private void EndGameResponse(char choice)
     {
-        if (choice != 'y')
+        if (choice != Yes)
         {
             return;
         }
@@ -1166,7 +1168,7 @@ public class MenuController
 
     private void QuickSaveResponse(char ch)
     {
-        if (ch == 'y')
+        if (ch == Yes)
         {
             DoSave(_quickSaveSlot);
             DoomGame.Instance.Sound.StartSound(null, SoundType.sfx_swtchx);
@@ -1201,7 +1203,7 @@ public class MenuController
 
     private void QuickLoadResponse(char ch)
     {
-        if (ch == 'y')
+        if (ch == Yes)
         {
             LoadSelect(_quickSaveSlot);
             DoomGame.Instance.Sound.StartSound(null, SoundType.sfx_swtchx);
@@ -1266,7 +1268,7 @@ public class MenuController
 
     private void QuitResponse(char choice)
     {
-        if (choice != 'y')
+        if (choice != Yes)
         {
             return;
         }
